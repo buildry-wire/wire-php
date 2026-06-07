@@ -13,7 +13,13 @@ namespace BuildryWire\Wire;
 class WireError extends \Exception
 {
     public string $type;
-    public ?string $code;
+    /**
+     * Machine-readable error code (string). Untyped to widen the inherited
+     * \Exception::$code (int) to public without a conflicting type declaration.
+     *
+     * @var string|null
+     */
+    public $code;
     public ?string $param;
     public ?string $requestId;
     public ?string $docUrl;
