@@ -18,13 +18,12 @@ use BuildryWire\Wire\Wire;
 
 $wire = new Wire('your-api-key');
 
-// Create a payment intent. Amounts are in minor units (MNT integer).
-// In test mode use the "sandbox" operator id; in live mode use the
-// operator ids enabled on your account.
+// Create a payment intent. Amounts are whole tögrög (MNT integer, no
+// fractional part): 50000 = 50,000 ₮. Without allowed_operators, Wire routes
+// to the operators enabled on your project.
 $pi = $wire->paymentIntents->create([
     'amount' => 50000,
     'currency' => 'MNT',
-    'allowed_operators' => ['sandbox'],
 ]);
 
 echo $pi->id, ' ', $pi->status, PHP_EOL;
